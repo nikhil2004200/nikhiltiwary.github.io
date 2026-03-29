@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nikhil Tiwary | Portfolio</title>
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body {
@@ -47,7 +50,7 @@ nav a {
     align-items: center;
     text-align: center;
 }
-    
+
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -114,6 +117,26 @@ h2 {
     margin-top: 10px;
 }
 
+/* CONTACT */
+.contact-card p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-card i {
+    color: #58a6ff;
+}
+
+.contact-link {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    color: #1f6feb;
+}
+
 /* FOOTER */
 footer {
     text-align: center;
@@ -139,23 +162,20 @@ footer {
     </div>
 </div>
 
- <section id="projects">
+<section id="projects">
     <h2>💻 Projects</h2>
 
     <div class="projects">
         <div class="card">
             <h3>🫀 Cardiovascular Disease Prediction</h3>
             <p>
-                Developed a machine learning model using XGBoost to predict cardiovascular disease risk 
-                based on lifestyle and medical survey data. Implemented explainability using SHAP 
-                to identify key risk factors.
+                ML model using XGBoost & SHAP to predict heart disease risk 
+                with explainable AI.
             </p>
+            <p><strong>Tech:</strong> Python, XGBoost, SHAP</p>
 
-            <p><strong>Tech:</strong> Python, XGBoost, SHAP, Jupyter Notebook</p>
-
-            <a href="https://github.com/nikhil2004200/cardiovascular-disease-risk-prediction" 
-               target="_blank" class="btn">
-               🔗 View Code
+            <a href="https://github.com/nikhil2004200/cardiovascular-disease-risk-prediction" class="btn">
+                🔗 View Code
             </a>
         </div>
     </div>
@@ -177,12 +197,36 @@ footer {
 
 <section id="contact">
     <h2>📬 Contact</h2>
-    <div class="card">
-        <p>Email: <a href="mailto:nikhilkumartiwari808@gmail.com">nikhilkumartiwari808@gmail.com</a></p>
+    <div class="card contact-card">
+
         <p>
-            <a href="https://github.com/nikhil2004200">GitHub</a> |
-            <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253">LinkedIn</a>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:nikhilkumartiwari808@gmail.com" class="contact-link">
+                nikhilkumartiwari808@gmail.com
+            </a>
         </p>
+
+        <p>
+            <i class="fas fa-phone"></i>
+            <a href="tel:7541946029" class="contact-link">
+                +91 7541946029
+            </a>
+        </p>
+
+        <p>
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/nikhil2004200" target="_blank" class="contact-link">
+                GitHub
+            </a>
+        </p>
+
+        <p>
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" target="_blank" class="contact-link">
+                LinkedIn
+            </a>
+        </p>
+
     </div>
 </section>
 
@@ -191,7 +235,7 @@ footer {
 </footer>
 
 <script>
-const text = "AI Engineer | ML Enthusiast | Problem Solver";
+const text = " Engineer | ML Enthusiast | Problem Solver";
 let i = 0;
 function typing() {
     if (i < text.length) {
