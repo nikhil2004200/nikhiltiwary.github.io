@@ -1,101 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikhil Tiwary | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil Tiwary | Portfolio</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #0d1117;
-            color: #fff;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    background: linear-gradient(-45deg, #0d1117, #161b22, #0d1117, #1f2937);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
 
-        header {
-            background: #161b22;
-            padding: 20px;
-            text-align: center;
-        }
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
 
-        nav a {
-            margin: 0 15px;
-            color: #58a6ff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+/* NAV */
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    z-index: 1000;
+}
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+nav a {
+    margin: 0 15px;
+    color: #58a6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        section {
-            padding: 50px;
-            max-width: 900px;
-            margin: auto;
-        }
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-        h1, h2 {
-            color: #58a6ff;
-        }
+.hero h1 {
+    font-size: 3rem;
+}
 
-        .card {
-            background: #161b22;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
+.hero span {
+    color: #58a6ff;
+}
 
-        .card:hover {
-            transform: scale(1.02);
-        }
+/* SECTION */
+section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #161b22;
-        }
+/* GRID PROJECT */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
 
-        a {
-            color: #58a6ff;
-        }
-    </style>
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #58a6ff;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>Nikhil Tiwary</h1>
-    <p>B.Tech CSE | AI & ML Enthusiast</p>
-    <nav>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+<nav>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+    <div>
+        <h1>Hi, I'm <span>Nikhil</span> 👋</h1>
+        <p id="typing"></p>
+    </div>
+</div>
 
 <section id="projects">
     <h2>💻 Projects</h2>
-    <div class="card">
-        <h3>Stock Market Prediction using AI</h3>
-        <p>Machine learning model using XGBoost for predicting stock trends.</p>
+
+    <div class="projects">
+
+        <div class="card">
+            <h3>🫀 Cardiovascular Disease Prediction</h3>
+            <p>
+                ML model using XGBoost & SHAP to predict heart disease risk 
+                with explainable AI.
+            </p>
+            <a href="ResearchPaper.pdf" class="btn">View Research</a>
+        </div>
+
     </div>
 </section>
 
 <section id="skills">
     <h2>🛠 Skills</h2>
     <div class="card">
-        <p>Python, Machine Learning, XGBoost, HTML, CSS, Git, Data Analysis</p>
+        Python, Machine Learning, XGBoost, SHAP, Data Analysis, HTML, CSS, Git
     </div>
 </section>
 
 <section id="resume">
     <h2>📄 Resume</h2>
     <div class="card">
-        <p><a href="#" target="_blank">Download Resume</a></p>
+        <a href="NikhilResume.pdf" class="btn">Download Resume</a>
     </div>
 </section>
 
@@ -104,8 +155,8 @@
     <div class="card">
         <p>Email: <a href="mailto:nikhilkumartiwari808@gmail.com">nikhilkumartiwari808@gmail.com</a></p>
         <p>
-            <a href="https://github.com/nikhil2004200" target="_blank">GitHub</a> |
-            <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" target="_blank">LinkedIn</a>
+            <a href="https://github.com/nikhil2004200">GitHub</a> |
+            <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253">LinkedIn</a>
         </p>
     </div>
 </section>
@@ -113,6 +164,19 @@
 <footer>
     <p>© 2026 Nikhil Tiwary</p>
 </footer>
+
+<script>
+const text = "AI Engineer | ML Enthusiast | Problem Solver";
+let i = 0;
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 40);
+    }
+}
+typing();
+</script>
 
 </body>
 </html>
