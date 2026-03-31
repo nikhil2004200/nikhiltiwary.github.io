@@ -1,11 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nikhil Tiwary | Portfolio</title>
 
-<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -24,7 +23,6 @@ body {
     100% {background-position: 0% 50%;}
 }
 
-/* NAV */
 nav {
     position: fixed;
     width: 100%;
@@ -42,7 +40,6 @@ nav a {
     font-weight: bold;
 }
 
-/* HERO */
 .hero {
     height: 100vh;
     display: flex;
@@ -66,33 +63,20 @@ nav a {
     box-shadow: 0 0 40px #58a6ff;
 }
 
-.hero h1 {
-    font-size: 3rem;
-}
-
-.hero span {
-    color: #58a6ff;
-}
-
-/* SECTION */
 section {
     padding: 80px 20px;
     max-width: 1000px;
     margin: auto;
 }
 
-h2 {
-    color: #58a6ff;
-}
+h2 { color: #58a6ff; }
 
-/* GRID */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-/* CARD */
 .card {
     background: rgba(255,255,255,0.05);
     border-radius: 15px;
@@ -106,7 +90,37 @@ h2 {
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-/* BUTTON */
+/* FEATURED PROJECT */
+.featured-project {
+    margin-bottom: 40px;
+    transform: scale(1.02);
+    border: 1px solid rgba(88,166,255,0.3);
+    box-shadow: 0 0 25px rgba(88,166,255,0.2);
+    transition: 0.4s;
+}
+
+.featured-project:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(88,166,255,0.5);
+}
+
+/* TWO IMAGES */
+.project-images {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.project-images img {
+    width: 50%;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.featured-project:hover .project-images img {
+    transform: scale(1.05);
+}
+
 .btn {
     display: inline-block;
     padding: 10px 15px;
@@ -117,7 +131,6 @@ h2 {
     margin-top: 10px;
 }
 
-/* CONTACT */
 .contact-card p {
     display: flex;
     align-items: center;
@@ -133,11 +146,6 @@ h2 {
     text-decoration: none;
 }
 
-.contact-link:hover {
-    color: #1f6feb;
-}
-
-/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
@@ -148,6 +156,8 @@ footer {
 <body>
 
 <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#resume">Resume</a>
@@ -156,25 +166,64 @@ footer {
 
 <div class="hero">
     <div>
-        <img src="gitprofil.jpeg" alt="Nikhil" class="profile-pic">
-        <h1>Hi, I'm <span>Nikhil</span> 👋</h1>
+        <img src="gitprofil.jpeg" class="profile-pic">
+        <h1>Hi, I'm <span style="color:#58a6ff;">Nikhil</span> 👋</h1>
         <p id="typing"></p>
     </div>
 </div>
 
+<section id="about">
+    <h2>👤 About Me</h2>
+    <div class="card">
+        Final-year B.Tech CSE student passionate about AI & ML. 
+        I build intelligent systems using real-world data and focus on explainable AI.
+    </div>
+</section>
+
+<section id="education">
+    <h2>🎓 Education</h2>
+    <div class="card">
+        <strong>B.Tech Computer Science Engineering With Specialization in Data Science</strong><br>
+        KCC Institute of Information Technology<br>
+        2022 – 2026
+    </div>
+</section>
+
 <section id="projects">
     <h2>💻 Projects</h2>
 
+    <!-- FEATURED PROJECT -->
+    <div class="card featured-project">
+        <div class="project-images">
+            <img src="project1.png">
+            <img src="project1b.png">
+        </div>
+
+        <h3>🫀 XGBoost-Based Heart Disease Prediction</h3>
+        <p>
+            Built a machine learning model using XGBoost to predict cardiovascular disease risk 
+            using real-world medical and lifestyle data.
+        </p>
+
+        <p><strong>Tech:</strong> Python, XGBoost, ML</p>
+
+        <a href="https://github.com/nikhil2004200/XGBoost-Based-Heart-Disease-Prediction" class="btn">
+            🔗 View Code
+        </a>
+    </div>
+
+    <!-- SECOND PROJECT -->
     <div class="projects">
         <div class="card">
-            <h3>🫀 Cardiovascular Disease Prediction</h3>
+            <h3>🌳 Random Forest CVD Prediction</h3>
             <p>
-                ML model using XGBoost & SHAP to predict heart disease risk 
-                with explainable AI.
+                Cardiovascular disease prediction using Random Forest algorithm 
+                with real-world dataset.
             </p>
-            <p><strong>Tech:</strong> Python, XGBoost, SHAP</p>
 
-            <a href="https://github.com/nikhil2004200/cardiovascular-disease-risk-prediction" class="btn">
+            <p><strong>Tech:</strong> Python, Random Forest</p>
+
+            <a href="https://github.com/nikhil2004200/RandomForest-CVD-Prediction" class="btn">
                 🔗 View Code
             </a>
         </div>
@@ -184,7 +233,7 @@ footer {
 <section id="skills">
     <h2>🛠 Skills</h2>
     <div class="card">
-        Python, Machine Learning, XGBoost, SHAP, Data Analysis, HTML, CSS, Git
+        Python, Machine Learning, XGBoost, Random Forest, Data Analysis, HTML, CSS, Git
     </div>
 </section>
 
@@ -199,39 +248,23 @@ footer {
     <h2>📬 Contact</h2>
     <div class="card contact-card">
 
-        <p>
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:nikhilkumartiwari808@gmail.com" class="contact-link">
-                nikhilkumartiwari808@gmail.com
-            </a>
-        </p>
+        <p><i class="fas fa-envelope"></i>
+        <a href="mailto:nikhilkumartiwari808@gmail.com" class="contact-link">Email</a></p>
 
-        <p>
-            <i class="fas fa-phone"></i>
-            <a href="tel:7541946029" class="contact-link">
-                +91 7541946029
-            </a>
-        </p>
+        <p><i class="fas fa-phone"></i>
+        <a href="tel:7541946029" class="contact-link">+91 7541946029</a></p>
 
-        <p>
-            <i class="fab fa-github"></i>
-            <a href="https://github.com/nikhil2004200" target="_blank" class="contact-link">
-                GitHub
-            </a>
-        </p>
+        <p><i class="fab fa-github"></i>
+        <a href="https://github.com/nikhil2004200" class="contact-link">GitHub</a></p>
 
-        <p>
-            <i class="fab fa-linkedin"></i>
-            <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" target="_blank" class="contact-link">
-                LinkedIn
-            </a>
-        </p>
+        <p><i class="fab fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="contact-link">LinkedIn</a></p>
 
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Nikhil Tiwary</p>
+    © 2026 Nikhil Tiwary
 </footer>
 
 <script>
