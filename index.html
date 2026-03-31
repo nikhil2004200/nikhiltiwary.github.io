@@ -23,6 +23,7 @@ body {
     100% {background-position: 0% 50%;}
 }
 
+/* NAV */
 nav {
     position: fixed;
     width: 100%;
@@ -40,8 +41,9 @@ nav a {
     font-weight: bold;
 }
 
+/* HERO FIXED */
 .hero {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,19 +66,33 @@ nav a {
 }
 
 section {
-    padding: 80px 20px;
+    padding: 60px 20px;
     max-width: 1000px;
     margin: auto;
 }
 
 h2 { color: #58a6ff; }
 
+/* ABOUT FIX */
+#about .card {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.card p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* PROJECT GRID */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
+/* CARD */
 .card {
     background: rgba(255,255,255,0.05);
     border-radius: 15px;
@@ -86,29 +102,27 @@ h2 { color: #58a6ff; }
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 /* FEATURED PROJECT */
 .featured-project {
     margin-bottom: 40px;
-    transform: scale(1.02);
     border: 1px solid rgba(88,166,255,0.3);
     box-shadow: 0 0 25px rgba(88,166,255,0.2);
-    transition: 0.4s;
 }
 
 .featured-project:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     box-shadow: 0 0 50px rgba(88,166,255,0.5);
 }
 
-/* TWO IMAGES */
+/* IMAGES */
 .project-images {
     display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 .project-images img {
@@ -117,10 +131,11 @@ h2 { color: #58a6ff; }
     transition: 0.4s;
 }
 
-.featured-project:hover .project-images img {
+.featured-project:hover img {
     transform: scale(1.05);
 }
 
+/* BUTTON */
 .btn {
     display: inline-block;
     padding: 10px 15px;
@@ -131,6 +146,7 @@ h2 { color: #58a6ff; }
     margin-top: 10px;
 }
 
+/* CONTACT */
 .contact-card p {
     display: flex;
     align-items: center;
@@ -141,11 +157,7 @@ h2 { color: #58a6ff; }
     color: #58a6ff;
 }
 
-.contact-link {
-    color: #58a6ff;
-    text-decoration: none;
-}
-
+/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
@@ -172,20 +184,18 @@ footer {
     </div>
 </div>
 
-<div class="card">
-    <p>
-        Final-year B.Tech CSE student passionate about AI & ML.
-    </p>
-
-    <p>
-        I build intelligent systems using real-world data and focus on explainable AI.
-    </p>
-</div>
+<section id="about">
+    <h2>👤 About Me</h2>
+    <div class="card">
+        <p>Final-year B.Tech CSE student passionate about AI & ML.</p>
+        <p>I build intelligent systems using real-world data and focus on explainable AI.</p>
+    </div>
+</section>
 
 <section id="education">
     <h2>🎓 Education</h2>
     <div class="card">
-        <strong>B.Tech Computer Science Engineering With Specialization in Data Science</strong><br>
+        <strong>B.Tech Computer Science Engineering</strong><br>
         KCC Institute of Information Technology<br>
         2022 – 2026
     </div>
@@ -194,7 +204,7 @@ footer {
 <section id="projects">
     <h2>💻 Projects</h2>
 
-    <!-- FEATURED PROJECT -->
+    <!-- FEATURED -->
     <div class="card featured-project">
         <div class="project-images">
             <img src="project1.png">
@@ -202,31 +212,21 @@ footer {
         </div>
 
         <h3>🫀 XGBoost-Based Heart Disease Prediction</h3>
-        <p>
-            Built a machine learning model using XGBoost to predict cardiovascular disease risk 
-            using real-world medical and lifestyle data.
-        </p>
-
-        <p><strong>Tech:</strong> Python, XGBoost, ML</p>
+        <p>Machine learning model using XGBoost for cardiovascular disease prediction.</p>
 
         <a href="https://github.com/nikhil2004200/XGBoost-Based-Heart-Disease-Prediction" class="btn">
-            🔗 View Code
+            View Code
         </a>
     </div>
 
-    <!-- SECOND PROJECT -->
+    <!-- SECOND -->
     <div class="projects">
         <div class="card">
             <h3>🌳 Random Forest CVD Prediction</h3>
-            <p>
-                Cardiovascular disease prediction using Random Forest algorithm 
-                with real-world dataset.
-            </p>
-
-            <p><strong>Tech:</strong> Python, Random Forest</p>
+            <p>Prediction model using Random Forest algorithm on real dataset.</p>
 
             <a href="https://github.com/nikhil2004200/RandomForest-CVD-Prediction" class="btn">
-                🔗 View Code
+                View Code
             </a>
         </div>
     </div>
@@ -250,17 +250,10 @@ footer {
     <h2>📬 Contact</h2>
     <div class="card contact-card">
 
-        <p><i class="fas fa-envelope"></i>
-        <a href="mailto:nikhilkumartiwari808@gmail.com" class="contact-link">Email</a></p>
-
-        <p><i class="fas fa-phone"></i>
-        <a href="tel:7541946029" class="contact-link">+91 7541946029</a></p>
-
-        <p><i class="fab fa-github"></i>
-        <a href="https://github.com/nikhil2004200" class="contact-link">GitHub</a></p>
-
-        <p><i class="fab fa-linkedin"></i>
-        <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="contact-link">LinkedIn</a></p>
+        <p><i class="fas fa-envelope"></i> nikhilkumartiwari808@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +91 7541946029</p>
+        <p><i class="fab fa-github"></i> github.com/nikhil2004200</p>
+        <p><i class="fab fa-linkedin"></i> linkedin.com/in/nikhil-tiwary-218260253</p>
 
     </div>
 </section>
@@ -270,7 +263,7 @@ footer {
 </footer>
 
 <script>
-const text = " Engineer | ML Enthusiast | Problem Solver";
+const text = "AI Engineer | ML Enthusiast | Problem Solver";
 let i = 0;
 function typing() {
     if (i < text.length) {
