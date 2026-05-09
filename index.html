@@ -3,277 +3,1285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nikhil Tiwary | Portfolio</title>
-
+<title>Nikhil Tiwary | AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
-    background: linear-gradient(-45deg, #0d1117, #161b22, #0d1117, #1f2937);
-    background-size: 400% 400%;
-    animation: gradient 12s ease infinite;
-}
+  :root {
+    --bg: #050a0f;
+    --surface: rgba(10, 20, 35, 0.7);
+    --border: rgba(0, 200, 255, 0.15);
+    --accent: #00c8ff;
+    --accent2: #7b61ff;
+    --accent3: #00ffb3;
+    --text: #c8d8e8;
+    --text-dim: #5a7a9a;
+    --heading: #ffffff;
+    --glow: 0 0 30px rgba(0, 200, 255, 0.2);
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
 
-@keyframes gradient {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* NAV */
-nav {
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-mono);
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
     position: fixed;
-    width: 100%;
-    padding: 15px;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(12px);
-    text-align: center;
-    z-index: 1000;
-}
-
-nav a {
-    margin: 0 15px;
-    color: #58a6ff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* HERO FIXED */
-.hero {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 12px; height: 12px;
+    background: var(--accent);
     border-radius: 50%;
-    border: 3px solid #58a6ff;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(0,200,255,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.15s, width 0.2s, height 0.2s;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* GRID BG */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: rgba(5, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: var(--accent);
+    top: -100px; right: -100px;
+    animation-delay: 0s;
+  }
+  .hero-orb-2 {
+    width: 300px; height: 300px;
+    background: var(--accent2);
+    bottom: 0; left: 200px;
+    animation-delay: -4s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content { z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    color: var(--heading);
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .hero h1 .accent { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s ease 0.4s both;
+    max-width: 500px;
+    line-height: 1.8;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+
+  .profile-pic {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
     object-fit: cover;
-    box-shadow: 0 0 20px #58a6ff;
-    transition: 0.3s;
-}
+    box-shadow: 0 0 40px rgba(0,200,255,0.3), 0 0 80px rgba(0,200,255,0.1);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both, pulseGlow 4s ease-in-out infinite;
+    display: block;
+  }
 
-.profile-pic:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 40px #58a6ff;
-}
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 40px rgba(0,200,255,0.3), 0 0 80px rgba(0,200,255,0.1); }
+    50% { box-shadow: 0 0 60px rgba(0,200,255,0.5), 0 0 120px rgba(0,200,255,0.2); }
+  }
 
-section {
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: auto;
-}
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-h2 { color: #58a6ff; }
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover::before { transform: translateX(0); opacity: 0.2; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,200,255,0.4); }
 
-/* ABOUT FIX */
-#about .card {
-    max-width: 700px;
-    margin: auto;
-    text-align: center;
-}
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
 
-.card p {
-    line-height: 1.6;
+  /* SECTION HEADER */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+  .section-num {
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--heading);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .card:hover::before { transform: scaleX(1); }
+  .card:hover {
+    border-color: rgba(0,200,255,0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,200,255,0.1);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  .about-card-title {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .about-text { font-size: 0.88rem; line-height: 1.9; color: var(--text); }
+
+  /* EDUCATION */
+  .edu-card {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .edu-icon {
+    width: 48px; height: 48px;
+    background: rgba(0,200,255,0.1);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 4px;
+  }
+  .edu-inst { color: var(--accent); font-size: 0.82rem; margin-bottom: 4px; }
+  .edu-year {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    padding: 3px 10px;
+    background: rgba(0,255,179,0.1);
+    border: 1px solid rgba(0,255,179,0.3);
+    border-radius: 100px;
+    color: var(--accent3);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+  }
+
+  /* PROJECTS */
+  .featured-project {
+    margin-bottom: 30px;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .featured-imgs { display: flex; gap: 10px; }
+  .featured-imgs img {
+    width: 50%;
+    border-radius: 8px;
+    object-fit: cover;
+    filter: grayscale(40%) brightness(0.8);
+    transition: 0.4s;
+  }
+  .featured-project:hover .featured-imgs img { filter: grayscale(0) brightness(1); }
+  .project-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent3);
     margin-bottom: 10px;
-}
+  }
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 10px;
+  }
+  .project-desc { font-size: 0.83rem; line-height: 1.8; color: var(--text); margin-bottom: 16px; }
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+  }
 
-/* PROJECT GRID */
-.projects {
+  .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-}
+  }
 
-/* CARD */
-.card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    padding: 20px;
-    backdrop-filter: blur(15px);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-/* FEATURED PROJECT */
-.featured-project {
-    margin-bottom: 40px;
-    border: 1px solid rgba(88,166,255,0.3);
-    box-shadow: 0 0 25px rgba(88,166,255,0.2);
-}
-
-.featured-project:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 50px rgba(88,166,255,0.5);
-}
-
-/* IMAGES */
-.project-images {
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .skill-group-title {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .skill-list { display: flex; flex-direction: column; gap: 10px; }
+  .skill-item {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .skill-bar {
+    width: 80px;
+    height: 3px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: fillBar 1s ease forwards;
+    animation-play-state: paused;
+  }
+  .skill-fill.animate { animation-play-state: running; }
 
-.project-images img {
-    width: 50%;
-    border-radius: 10px;
-    transition: 0.4s;
-}
+  @keyframes fillBar {
+    to { transform: scaleX(1); }
+  }
 
-.featured-project:hover img {
-    transform: scale(1.05);
-}
-
-/* BUTTON */
-.btn {
+  /* RESEARCH PAPERS */
+  .paper-card { position: relative; }
+  .paper-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 800;
+    color: rgba(0,200,255,0.06);
+    position: absolute;
+    top: -10px; right: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .paper-status {
     display: inline-block;
-    padding: 10px 15px;
-    background: #58a6ff;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    margin-top: 10px;
-}
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+  .status-published {
+    background: rgba(0,255,179,0.1);
+    border: 1px solid rgba(0,255,179,0.3);
+    color: var(--accent3);
+  }
+  .status-review {
+    background: rgba(255,200,0,0.1);
+    border: 1px solid rgba(255,200,0,0.3);
+    color: #ffc800;
+  }
+  .status-preprint {
+    background: rgba(123,97,255,0.1);
+    border: 1px solid rgba(123,97,255,0.3);
+    color: var(--accent2);
+  }
+  .paper-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .paper-venue {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .paper-desc { font-size: 0.8rem; line-height: 1.8; color: var(--text); margin-bottom: 16px; }
+  .paper-authors { font-size: 0.72rem; color: var(--text-dim); margin-bottom: 12px; font-style: italic; }
 
-/* CONTACT */
-.contact-card p {
+  .papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  /* CERTIFICATIONS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .cert-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-issuer-badge {
+    width: 44px; height: 44px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
-}
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+  }
+  .cert-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .cert-issuer { font-size: 0.75rem; color: var(--accent); margin-bottom: 4px; }
+  .cert-date { font-size: 0.68rem; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 14px; }
+  .cert-verify {
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  .cert-verify:hover { gap: 10px; }
+  .cert-corner {
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-top: 40px solid rgba(0,200,255,0.08);
+    border-left: 40px solid transparent;
+  }
 
-.contact-card i {
-    color: #58a6ff;
-}
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 700px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  .contact-intro {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--heading);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .contact-text { font-size: 0.83rem; line-height: 1.9; color: var(--text); margin-bottom: 30px; }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.8rem;
+    transition: all 0.3s;
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateX(6px);
+  }
+  .contact-link i { color: var(--accent); width: 18px; text-align: center; }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-}
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 0.65rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* TYPING CURSOR */
+  #typing::after {
+    content: '|';
+    color: var(--accent);
+    animation: blink 0.8s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.65rem; letter-spacing: 1px; }
+    .hero { padding: 0 24px; }
+    section { padding: 80px 24px; }
+    .featured-project { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,255,0.2), transparent);
+  }
+
+  /* HIGHLIGHT */
+  .hl { color: var(--accent); }
+  .hl2 { color: var(--accent2); }
+  .hl3 { color: var(--accent3); }
 </style>
 </head>
-
 <body>
 
+<!-- LOCAL SETUP BANNER: only shows when index.html opened as file:// -->
+<div id="setup-banner" style="display:none; position:fixed; bottom:20px; right:20px; z-index:9000;
+  background:#0d1f2d; border:1px solid rgba(255,179,71,0.4); border-radius:10px;
+  padding:16px 20px; max-width:340px; font-family:'Space Mono',monospace; font-size:0.72rem;
+  color:#c8d8e8; box-shadow:0 10px 40px rgba(0,0,0,0.6);">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <span style="color:#ffb347; font-weight:700; letter-spacing:1px;">📁 FILE SETUP NEEDED</span>
+    <span onclick="document.getElementById('setup-banner').style.display='none'"
+      style="cursor:pointer; color:#5a7a9a; font-size:1rem;">✕</span>
+  </div>
+  <div style="color:#ffb347; margin-bottom:8px;">Put these files in the <strong>same folder</strong> as index.html:</div>
+  <div style="line-height:2; color:#c8d8e8;">
+    📄 <code style="color:#00ffb3;">gitprofil.jpeg</code> — your photo<br>
+    📄 <code style="color:#00ffb3;">NikhilResume.pdf</code> — your resume<br>
+    📄 <code style="color:#00ffb3;">363_.pdf</code> — conference certificate<br>
+    📄 <code style="color:#00ffb3;">XAI-Driven_...v2.docx</code> — paper<br>
+    📄 <code style="color:#00ffb3;">project1.png</code>, <code style="color:#00ffb3;">project1b.png</code> — screenshots
+  </div>
+</div>
+
+<script>
+if (window.location.protocol === 'file:') {
+  document.getElementById('setup-banner').style.display = 'block';
+}
+</script>
+
+
+<div class="cursor-ring" id="cursorRing"></div>
+
 <nav>
+  <div class="nav-logo">NT</div>
+  <div class="nav-links">
     <a href="#about">About</a>
     <a href="#education">Education</a>
     <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#certifications">Certs</a>
     <a href="#skills">Skills</a>
-    <a href="#resume">Resume</a>
     <a href="#contact">Contact</a>
+  </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-    <div>
-        <img src="gitprofil.jpeg" class="profile-pic">
-        <h1>Hi, I'm <span style="color:#58a6ff;">Nikhil</span> 👋</h1>
-        <p id="typing"></p>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">// Available for opportunities</div>
+    <img src="gitprofil.jpeg" class="profile-pic" alt="Nikhil Tiwary" onerror="this.style.display='none'">
+    <h1>Nikhil<br><span class="accent">Tiwary</span></h1>
+    <p class="hero-sub" id="typing"></p>
+    <div class="hero-btns" style="margin-top:20px;">
+      <a href="#projects" class="btn-primary"><i class="fas fa-code"></i> View Work</a>
+      <a href="NikhilResume.pdf" class="btn-outline"><i class="fas fa-file-alt"></i> Resume</a>
     </div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">2+</span><span class="stat-label">ML Projects</span></div>
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">Research Paper</span></div>
+      <div class="stat"><span class="stat-num">6</span><span class="stat-label">Certifications</span></div>
+      <div class="stat"><span class="stat-num">B.Tech</span><span class="stat-label">CSE Graduate</span></div>
+    </div>
+  </div>
 </div>
 
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
 <section id="about">
-    <h2>👤 About Me</h2>
-    <div class="card">
-        <p>Final-year B.Tech CSE student passionate about AI & ML.</p>
-        <p>I build intelligent systems using real-world data and focus on explainable AI.</p>
+  <div class="section-label reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="card reveal">
+      <div class="about-card-title">Who I Am</div>
+      <p class="about-text">
+        B.Tech Computer Science Engineering graduate passionate about building intelligent systems that solve real-world problems. I specialize in machine learning, with a particular focus on healthcare AI and explainable models.
+      </p>
     </div>
+    <div class="card reveal" style="transition-delay:0.1s">
+      <div class="about-card-title">What I Do</div>
+      <p class="about-text">
+        I build production-grade ML pipelines using ensemble methods like XGBoost and Random Forest. My research centers on cardiovascular disease prediction and making AI decisions interpretable and trustworthy.
+      </p>
+    </div>
+    <div class="card reveal" style="transition-delay:0.2s">
+      <div class="about-card-title">My Approach</div>
+      <p class="about-text">
+        Data-first. Rigorous evaluation. Explainable outputs. I believe AI should be transparent, especially when lives are at stake — and I build with that principle at the core.
+      </p>
+    </div>
+    <div class="card reveal" style="transition-delay:0.3s">
+      <div class="about-card-title">Currently</div>
+      <p class="about-text">
+        Freshly graduated and actively seeking roles in AI/ML engineering. Open to research positions, industry roles, and collaborative projects in the healthcare AI domain.
+      </p>
+    </div>
+  </div>
 </section>
 
+<div class="section-divider"></div>
+
+<!-- EDUCATION -->
 <section id="education">
-    <h2>🎓 Education</h2>
-    <div class="card">
-        <strong>B.Tech Computer Science Engineering</strong><br>
-        KCC Institute of Information Technology<br>
-        2022 – 2026
+  <div class="section-label reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="card reveal">
+    <div class="edu-card">
+      <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div>
+        <div class="edu-degree">B.Tech — Computer Science & Engineering</div>
+        <div class="edu-inst">KCC Institute of Information Technology</div>
+        <div class="edu-year">
+          2022 – 2026
+          <span class="badge">✓ Completed</span>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text); margin-top:12px; line-height:1.8;">
+          Specialized in Artificial Intelligence & Machine Learning. Coursework in Data Structures, Algorithms, Deep Learning, NLP, and Statistical Modeling. Final year project: XGBoost-based cardiovascular disease prediction system.
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
 <section id="projects">
-    <h2>💻 Projects</h2>
+  <div class="section-label reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
 
-    <!-- FEATURED -->
-    <div class="card featured-project">
-        <div class="project-images">
-            <img src="project1.png">
-            <img src="project1b.png">
-        </div>
+  <!-- FEATURED -->
+  <div class="card featured-project reveal">
+    <div class="featured-imgs">
+      <img src="project1.png" alt="Project Screenshot" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%230a1423%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%2300c8ff%22 text-anchor=%22middle%22 font-family=%22monospace%22>ML Model</text></svg>'">
+      <img src="project1b.png" alt="Project Screenshot" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%230a1423%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%2300c8ff%22 text-anchor=%22middle%22 font-family=%22monospace%22>Results</text></svg>'">
+    </div>
+    <div>
+      <div class="project-label">★ Featured Project</div>
+      <div class="project-title">XGBoost-Based Heart Disease Prediction</div>
+      <p class="project-desc">End-to-end machine learning pipeline for cardiovascular disease prediction using XGBoost. Achieved high accuracy with SHAP-based explainability, feature importance analysis, and cross-validated results on clinical datasets.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">SHAP</span>
+        <span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">Healthcare AI</span>
+      </div>
+      <a href="https://github.com/nikhil2004200/XGBoost-Based-Heart-Disease-Prediction" class="btn-primary" target="_blank">
+        <i class="fab fa-github"></i> View Code
+      </a>
+    </div>
+  </div>
 
-        <h3>🫀 XGBoost-Based Heart Disease Prediction</h3>
-        <p>Machine learning model using XGBoost for cardiovascular disease prediction.</p>
+  <div class="projects-grid">
+    <div class="card reveal" style="transition-delay:0.1s">
+      <div class="project-label">ML Project</div>
+      <div class="project-title">Random Forest CVD Prediction</div>
+      <p class="project-desc">Ensemble-based prediction model for cardiovascular disease using Random Forest on real clinical datasets with comprehensive EDA and performance benchmarking.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Random Forest</span><span class="tag">EDA</span><span class="tag">Matplotlib</span>
+      </div>
+      <a href="https://github.com/nikhil2004200/RandomForest-CVD-Prediction" class="btn-outline" target="_blank" style="font-size:0.72rem; margin-top:16px; display:inline-flex;">
+        <i class="fab fa-github"></i> View Code
+      </a>
+    </div>
 
-        <a href="https://github.com/nikhil2004200/XGBoost-Based-Heart-Disease-Prediction" class="btn">
-            View Code
+    <div class="card reveal" style="transition-delay:0.2s; border-style: dashed; border-color: rgba(0,200,255,0.15);">
+      <div class="project-label" style="color:var(--text-dim)">Coming Soon</div>
+      <div class="project-title" style="color:var(--text-dim)">Next Project</div>
+      <p class="project-desc" style="color:var(--text-dim)">Currently in development. Building something in the healthcare AI space with deep learning components.</p>
+      <div class="project-tags"><span class="tag">In Progress</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESEARCH PAPERS -->
+<section id="research">
+  <div class="section-label reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Research Papers</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- PERFORMANCE TABLE STYLES -->
+  <style>
+    .perf-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.72rem; }
+    .perf-table th { text-align: left; color: var(--accent); font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+    .perf-table td { padding: 7px 10px; border-bottom: 1px solid rgba(0,200,255,0.05); color: var(--text); }
+    .perf-table tr:last-child td { border-bottom: none; }
+    .perf-table .highlight-row td { color: var(--accent3); font-weight: 700; }
+    .bar-cell { display: flex; align-items: center; gap: 8px; }
+    .mini-bar { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .mini-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+    .highlight-row .mini-fill { background: linear-gradient(90deg, var(--accent3), #00c8ff); }
+    .paper-abstract-toggle { 
+      font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; 
+      color: var(--text-dim); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px; transition: color 0.2s;
+    }
+    .paper-abstract-toggle:hover { color: var(--accent); }
+    .paper-abstract { 
+      max-height: 0; overflow: hidden; transition: max-height 0.5s ease;
+      font-size: 0.8rem; line-height: 1.8; color: var(--text);
+    }
+    .paper-abstract.open { max-height: 300px; }
+  </style>
+
+  <div class="papers-grid">
+
+    <!-- REAL PAPER -->
+    <div class="card paper-card reveal" style="grid-column: 1 / -1;">
+      <div class="paper-num">01</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+        <span class="paper-status status-published">✓ Presented</span>
+        <span class="paper-status" style="background:rgba(123,97,255,0.12); border:1px solid rgba(123,97,255,0.35); color:var(--accent2);">Springer ICMCE-2026</span>
+      </div>
+      <div class="paper-title">XAI-Driven Gradient Boosting Model for Interpretable Cardiovascular Disease Prediction</div>
+      <div class="paper-venue"><i class="fas fa-landmark" style="margin-right:6px; font-size:0.7rem;"></i>2nd International Conference on Modern Trends in Computers &amp; Electronics (ICMCE-2026) · Teerthanker Mahaveer University, Moradabad · 1–2 May 2026</div>
+      <div style="font-size:0.7rem; color:var(--text-dim); margin-top:4px; margin-bottom:2px;">
+        <i class="fas fa-book" style="margin-right:5px; color:var(--accent2);"></i>Proceedings to be published by <strong style="color:var(--accent2);">Springer</strong> · Certificate ID: ICMCE2026/ID/363
+      </div>
+      <div class="paper-authors">Nikhil Tiwary · Aman Kumar · Ankur Pal · Saranya Raj</div>
+
+      <div style="margin: 16px 0;">
+        <span class="tag">XGBoost</span>
+        <span class="tag">SHAP / XAI</span>
+        <span class="tag">Cardiovascular Disease</span>
+        <span class="tag">Survey-Based Data</span>
+        <span class="tag">Stratified K-Fold CV</span>
+        <span class="tag">Healthcare Analytics</span>
+      </div>
+
+      <!-- ABSTRACT TOGGLE -->
+      <div class="paper-abstract-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-down'); this.querySelector('i').classList.toggle('fa-chevron-up');">
+        <i class="fas fa-chevron-down"></i> Read Abstract
+      </div>
+      <div class="paper-abstract" style="margin-top:10px; padding-top:10px; border-top: 1px solid var(--border);">
+        Cardiovascular disease (CVD) is one of the leading causes of death in India. This study proposes an XGBoost-based predictive framework trained on primary survey data collected from the general population — capturing lifestyle, physical activity, dietary intake, sleep, and general health — to reflect a more realistic clinical environment. SHAP (SHapley Additive exPlanations) values are employed to ensure model interpretability, making predictions transparent and actionable for clinicians. Stratified K-Fold cross-validation (k=5) was used to mitigate overfitting on the dataset. The proposed model outperforms baseline methods including Logistic Regression, Random Forest, and ANN across all key metrics.
+      </div>
+
+      <!-- PERFORMANCE TABLE -->
+      <div style="margin-top: 20px;">
+        <div style="font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">Model Performance Comparison</div>
+        <table class="perf-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Accuracy</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>F1-Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Logistic Regression</td>
+              <td><div class="bar-cell"><div class="mini-bar"><div class="mini-fill" style="width:85%"></div></div>0.85</div></td>
+              <td>0.83</td><td>0.84</td><td>0.83</td>
+            </tr>
+            <tr>
+              <td>Random Forest</td>
+              <td><div class="bar-cell"><div class="mini-bar"><div class="mini-fill" style="width:88%"></div></div>0.88</div></td>
+              <td>0.87</td><td>0.86</td><td>0.86</td>
+            </tr>
+            <tr>
+              <td>Artificial Neural Network</td>
+              <td><div class="bar-cell"><div class="mini-bar"><div class="mini-fill" style="width:89%"></div></div>0.89</div></td>
+              <td>0.88</td><td>0.87</td><td>0.87</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>⭐ XGBoost (Proposed)</td>
+              <td><div class="bar-cell"><div class="mini-bar"><div class="mini-fill" style="width:91%"></div></div>0.91</div></td>
+              <td>0.92</td><td>0.91</td><td>0.91</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 20px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <a href="XAI-Driven_Gradient_Boosting_Model_for_Interpretable_Cardiovascular_Disease_Prediction_v2.docx"
+           class="btn-primary" style="font-size:0.72rem;"
+           onclick="return checkFile(event, this.href, 'Place the paper .docx file in the same folder as index.html')">
+          <i class="fas fa-file-word"></i> Download Paper
         </a>
+        <a href="https://github.com/nikhil2004200/XGBoost-Based-Heart-Disease-Prediction" class="btn-outline" target="_blank" style="font-size:0.72rem; display:inline-flex;">
+          <i class="fab fa-github"></i> View Code
+        </a>
+      </div>
+      <div id="file-tip" style="display:none; margin-top:12px; font-size:0.72rem; color:#ffb347; background:rgba(255,179,71,0.08); border:1px solid rgba(255,179,71,0.25); border-radius:6px; padding:10px 14px;">
+        <i class="fas fa-folder-open" style="margin-right:6px;"></i><span id="file-tip-msg"></span>
+      </div>
     </div>
 
-    <!-- SECOND -->
-    <div class="projects">
-        <div class="card">
-            <h3>🌳 Random Forest CVD Prediction</h3>
-            <p>Prediction model using Random Forest algorithm on real dataset.</p>
-
-            <a href="https://github.com/nikhil2004200/RandomForest-CVD-Prediction" class="btn">
-                View Code
-            </a>
-        </div>
-    </div>
+  </div>
 </section>
 
+<div class="section-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="certs-grid">
+
+    <!-- REAL CERT 1 -->
+    <div class="card cert-card reveal">
+      <div class="cert-corner"></div>
+      <div class="cert-issuer-badge" style="background:rgba(255,153,0,0.15); border:1px solid rgba(255,153,0,0.3);">☁️</div>
+      <div class="cert-title">AWS – Solutions Architecture Job Simulation</div>
+      <div class="cert-issuer">Amazon Web Services (Forage)</div>
+      <div class="cert-date">· Cloud Architecture · Job Simulation</div>
+      <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="cert-verify" target="_blank">View on LinkedIn <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- REAL CERT 2 -->
+    <div class="card cert-card reveal" style="transition-delay:0.1s">
+      <div class="cert-corner"></div>
+      <div class="cert-issuer-badge" style="background:rgba(30,30,30,0.5); border:1px solid rgba(255,255,255,0.15);">🐙</div>
+      <div class="cert-title">Career Essentials in GitHub Professional Certificate</div>
+      <div class="cert-issuer">GitHub</div>
+      <div class="cert-date">· Version Control · Collaboration · DevOps</div>
+      <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="cert-verify" target="_blank">View on LinkedIn <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- REAL CERT 3 -->
+    <div class="card cert-card reveal" style="transition-delay:0.2s">
+      <div class="cert-corner"></div>
+      <div class="cert-issuer-badge" style="background:rgba(0,150,200,0.15); border:1px solid rgba(0,150,200,0.3);">📊</div>
+      <div class="cert-title">Data Analytics Job Simulation</div>
+      <div class="cert-issuer">Deloitte Australia (Forage)</div>
+      <div class="cert-date">· Data Analysis · Business Intelligence</div>
+      <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="cert-verify" target="_blank">View on LinkedIn <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- REAL CERT 4 -->
+    <div class="card cert-card reveal" style="transition-delay:0.3s">
+      <div class="cert-corner"></div>
+      <div class="cert-issuer-badge" style="background:rgba(0,200,120,0.15); border:1px solid rgba(0,200,120,0.3);">🔢</div>
+      <div class="cert-title">Data Analytics Job Simulation</div>
+      <div class="cert-issuer">Quantium (Forage)</div>
+      <div class="cert-date">· Statistical Analysis · Python · Retail Analytics</div>
+      <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="cert-verify" target="_blank">View on LinkedIn <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- REAL CERT 5 -->
+    <div class="card cert-card reveal" style="transition-delay:0.4s">
+      <div class="cert-corner"></div>
+      <div class="cert-issuer-badge" style="background:rgba(0,100,200,0.15); border:1px solid rgba(0,100,200,0.3);">💻</div>
+      <div class="cert-title">Software Engineering Job Simulation</div>
+      <div class="cert-issuer">JPMorgan Chase (Forage)</div>
+      <div class="cert-date">· Software Engineering · Financial Tech</div>
+      <a href="https://www.linkedin.com/in/nikhil-tiwary-218260253" class="cert-verify" target="_blank">View on LinkedIn <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- CONFERENCE CERT HIGHLIGHT -->
+    <div class="card cert-card reveal" style="transition-delay:0.5s; border-color:rgba(123,97,255,0.35); background: rgba(123,97,255,0.06);">
+      <div class="cert-corner" style="border-top-color:rgba(123,97,255,0.15);"></div>
+      <div class="cert-issuer-badge" style="background:rgba(123,97,255,0.15); border:1px solid rgba(123,97,255,0.4);">🏆</div>
+      <div class="cert-title">Certificate of Participation – ICMCE 2026</div>
+      <div class="cert-issuer" style="color:var(--accent2);">Springer · Teerthanker Mahaveer University</div>
+      <div class="cert-date">· 1–2 May 2026 · ID: ICMCE2026/ID/363</div>
+      <a href="363_.pdf" class="cert-verify" style="color:var(--accent2);" target="_blank"
+         onclick="return checkFile(event, this.href, 'Place 363_.pdf in the same folder as index.html')">View Certificate <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
 <section id="skills">
-    <h2>🛠 Skills</h2>
-    <div class="card">
-        Python, Machine Learning, XGBoost, Random Forest, Data Analysis, HTML, CSS, Git
+  <div class="section-label reveal">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="card reveal">
+      <div class="skill-group-title">ML / AI</div>
+      <div class="skill-list">
+        <div class="skill-item"><span>XGBoost</span><div class="skill-bar"><div class="skill-fill" style="--w:0.92; animation-delay:0.1s"></div></div></div>
+        <div class="skill-item"><span>Random Forest</span><div class="skill-bar"><div class="skill-fill" style="--w:0.90; animation-delay:0.2s"></div></div></div>
+        <div class="skill-item"><span>Scikit-learn</span><div class="skill-bar"><div class="skill-fill" style="--w:0.88; animation-delay:0.3s"></div></div></div>
+        <div class="skill-item"><span>Deep Learning</span><div class="skill-bar"><div class="skill-fill" style="--w:0.72; animation-delay:0.4s"></div></div></div>
+      </div>
     </div>
+
+    <div class="card reveal" style="transition-delay:0.1s">
+      <div class="skill-group-title">Data & Tools</div>
+      <div class="skill-list">
+        <div class="skill-item"><span>Python</span><div class="skill-bar"><div class="skill-fill" style="animation-delay:0.1s"></div></div></div>
+        <div class="skill-item"><span>Pandas / NumPy</span><div class="skill-bar"><div class="skill-fill" style="--w:0.87; animation-delay:0.2s"></div></div></div>
+        <div class="skill-item"><span>Matplotlib / Seaborn</span><div class="skill-bar"><div class="skill-fill" style="--w:0.84; animation-delay:0.3s"></div></div></div>
+        <div class="skill-item"><span>SHAP</span><div class="skill-bar"><div class="skill-fill" style="--w:0.80; animation-delay:0.4s"></div></div></div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="transition-delay:0.2s">
+      <div class="skill-group-title">Dev & Other</div>
+      <div class="skill-list">
+        <div class="skill-item"><span>Git / GitHub</span><div class="skill-bar"><div class="skill-fill" style="--w:0.88; animation-delay:0.1s"></div></div></div>
+        <div class="skill-item"><span>HTML / CSS</span><div class="skill-bar"><div class="skill-fill" style="--w:0.75; animation-delay:0.2s"></div></div></div>
+        <div class="skill-item"><span>Data Analysis</span><div class="skill-bar"><div class="skill-fill" style="--w:0.90; animation-delay:0.3s"></div></div></div>
+        <div class="skill-item"><span>Research Writing</span><div class="skill-bar"><div class="skill-fill" style="--w:0.78; animation-delay:0.4s"></div></div></div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<div class="section-divider"></div>
+
+<!-- RESUME -->
 <section id="resume">
-    <h2>📄 Resume</h2>
-    <div class="card">
-        <a href="NikhilResume.pdf" class="btn">Download Resume</a>
+  <div class="section-label reveal">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Resume</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="card reveal" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+    <div>
+      <div style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--heading); margin-bottom:6px;">Nikhil Tiwary — AI Engineer</div>
+      <div style="font-size:0.8rem; color:var(--text-dim);">B.Tech CSE · Machine Learning · Healthcare AI</div>
     </div>
+    <a href="NikhilResume.pdf" class="btn-primary" download>
+      <i class="fas fa-download"></i> Download Resume
+    </a>
+  </div>
 </section>
 
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
 <section id="contact">
-    <h2>📬 Contact</h2>
-    <div class="card contact-card">
-
-        <p><i class="fas fa-envelope"></i> nikhilkumartiwari808@gmail.com</p>
-        <p><i class="fas fa-phone"></i> +91 7541946029</p>
-        <p><i class="fab fa-github"></i> github.com/nikhil2004200</p>
-        <p><i class="fab fa-linkedin"></i> linkedin.com/in/nikhil-tiwary-218260253</p>
-
+  <div class="section-label reveal">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-intro">Let's build something <span class="hl">intelligent</span> together.</div>
+      <p class="contact-text">I'm actively looking for AI/ML opportunities — whether it's a full-time role, research collaboration, or a side project worth building. Drop me a message.</p>
+      <a href="mailto:nikhilkumartiwari808@gmail.com" class="btn-primary">
+        <i class="fas fa-paper-plane"></i> Say Hello
+      </a>
     </div>
+    <div class="contact-links reveal" style="transition-delay:0.2s">
+      <a href="mailto:nikhilkumartiwari808@gmail.com" class="contact-link">
+        <i class="fas fa-envelope"></i> nikhilkumartiwari808@gmail.com
+      </a>
+      <a href="tel:+917541946029" class="contact-link">
+        <i class="fas fa-phone"></i> +91 75419 46029
+      </a>
+      <a href="https://github.com/nikhil2004200" class="contact-link" target="_blank">
+        <i class="fab fa-github"></i> github.com/nikhil2004200
+      </a>
+      <a href="https://linkedin.com/in/nikhil-tiwary-218260253" class="contact-link" target="_blank">
+        <i class="fab fa-linkedin"></i> linkedin.com/in/nikhil-tiwary-218260253
+      </a>
+      <a href="https://nikhiltiwary.me" class="contact-link" target="_blank">
+        <i class="fas fa-globe"></i> nikhiltiwary.me
+      </a>
+    </div>
+  </div>
 </section>
 
 <footer>
-    © 2026 Nikhil Tiwary
+  <span style="color:var(--accent); font-family:var(--font-display); font-weight:700;">NT</span>
+  <span>© 2026 Nikhil Tiwary — Built with precision.</span>
+  <span style="color:var(--accent);">AI Engineer · B.Tech CSE</span>
 </footer>
 
 <script>
-const text = "AI Engineer | ML Enthusiast | Problem Solver";
-let i = 0;
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 40);
-    }
+// FILE CHECK HELPER
+async function checkFile(e, href, msg) {
+  // For external URLs, allow normally
+  if (href.startsWith('http')) return true;
+  try {
+    const res = await fetch(href, { method: 'HEAD' });
+    if (res.ok) return true;
+  } catch {}
+  e.preventDefault();
+  const tip = document.getElementById('file-tip');
+  const tipMsg = document.getElementById('file-tip-msg');
+  if (tip && tipMsg) {
+    tipMsg.textContent = msg;
+    tip.style.display = 'block';
+    setTimeout(() => tip.style.display = 'none', 6000);
+  }
+  return false;
 }
-typing();
-</script>
 
+
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx - 6 + 'px';
+  cursor.style.top = my - 6 + 'px';
+});
+function animateRing() {
+  rx += (mx - rx - 18) * 0.12;
+  ry += (my - ry - 18) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// TYPING
+const phrases = [
+  "AI Engineer | ML Researcher | B.Tech CSE Graduate",
+  "Building intelligent systems that save lives.",
+  "XGBoost · Random Forest · Explainable AI"
+];
+let pi = 0, ci = 0, deleting = false;
+const el = document.getElementById('typing');
+function type() {
+  const current = phrases[pi];
+  if (!deleting) {
+    el.textContent = current.substring(0, ci + 1);
+    ci++;
+    if (ci === current.length) { deleting = true; setTimeout(type, 2200); return; }
+    setTimeout(type, 38);
+  } else {
+    el.textContent = current.substring(0, ci - 1);
+    ci--;
+    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 300); return; }
+    setTimeout(type, 18);
+  }
+}
+type();
+
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Animate skill bars
+      e.target.querySelectorAll('.skill-fill').forEach(bar => bar.classList.add('animate'));
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(r => observer.observe(r));
+
+// SKILL BAR WIDTHS
+document.querySelectorAll('.skill-fill').forEach(bar => {
+  const w = getComputedStyle(bar).getPropertyValue('--w') || '0.92';
+  bar.style.width = (parseFloat(w) * 100) + '%';
+});
+</script>
 </body>
 </html>
