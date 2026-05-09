@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -37,37 +37,9 @@
     cursor: none;
   }
 
-  /* CUSTOM CURSOR */
-  *, *::before, *::after { cursor: none !important; }
-
-  .cursor {
-    position: fixed;
-    top: 0; left: 0;
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
-    mix-blend-mode: screen;
-    will-change: transform;
-  }
-  .cursor.hovering {
-    width: 18px; height: 18px;
-    background: white;
-  }
+  /* CURSOR - normal */
+  .cursor, .cursor-ring { display: none; }
   .cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 1.5px solid rgba(0,200,255,0.6);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    transform: translate(-50%, -50%);
-    transition: width 0.25s, height 0.25s, border-color 0.25s, opacity 0.3s;
-    will-change: transform;
   }
 
   /* NOISE OVERLAY */
@@ -1234,50 +1206,6 @@ async function checkFile(e, href, msg) {
   return false;
 }
 
-
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-
-let mx = 0, my = 0;   // actual mouse
-let rx = 0, ry = 0;   // ring lagged position
-
-// Hide cursor when it leaves window, show when it enters
-document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; ring.style.opacity = '0'; });
-document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; ring.style.opacity = '1'; });
-
-// Track mouse — use transform for GPU-accelerated, jank-free movement
-document.addEventListener('mousemove', e => {
-  mx = e.clientX;
-  my = e.clientY;
-  // Dot follows instantly
-  cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-});
-
-// Ring lerps smoothly behind
-function animateRing() {
-  rx += (mx - rx) * 0.13;
-  ry += (my - ry) * 0.13;
-  ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
-// Hover effect on interactive elements
-const hoverEls = document.querySelectorAll('a, button, .card, .nav-links a, .paper-abstract-toggle');
-hoverEls.forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('hovering');
-    ring.style.width = '54px';
-    ring.style.height = '54px';
-    ring.style.borderColor = 'rgba(0,200,255,0.9)';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('hovering');
-    ring.style.width = '36px';
-    ring.style.height = '36px';
-    ring.style.borderColor = 'rgba(0,200,255,0.6)';
-  });
-});
 
 // TYPING
 const phrases = [
